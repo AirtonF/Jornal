@@ -19,9 +19,7 @@ import javax.persistence.TemporalType;
 @Table(name = "Noticia")
 public class Noticia {
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional= false)
-	@JoinColumn(name = "id_secao", referencedColumnName = "secao_id")
-	private Secao secao;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,9 +35,14 @@ public class Noticia {
 	@Column(nullable = false , length = 500)
 	private String texto;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional= false)
+	@ManyToOne(fetch = FetchType.EAGER, optional= false)
 	@JoinColumn(name = "autor", referencedColumnName = "usuario_id")
 	private Usuario autor;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional= false)
+	@JoinColumn(name = "id_secao", referencedColumnName = "secao_id")
+	private Secao secao;
+	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_noticia")

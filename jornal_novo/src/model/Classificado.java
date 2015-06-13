@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -39,10 +41,11 @@ public class Classificado {
 	@Column(name="melhor_oferta")
 	private float melhorOferta;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional= false)
-	@JoinColumn(name = "autor_oferta", referencedColumnName = "login")
+	@ManyToOne(fetch = FetchType.EAGER, optional= false)
+	@JoinColumn(name = "autor_oferta", referencedColumnName = "usuario_id")
 	private Usuario autor;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_oferta")
 	private Date dataOferta;
 	

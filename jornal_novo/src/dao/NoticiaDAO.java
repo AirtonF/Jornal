@@ -10,7 +10,7 @@ import model.Noticia;
 public class NoticiaDAO extends GenericDAO<Noticia>{
 
 	public List<Noticia> listar(){
-		String hql = "Select t from comentario t";
+		String hql = "from Noticia n";
 		return super.manager.createQuery(hql, Noticia.class).getResultList();
 		}  
 	

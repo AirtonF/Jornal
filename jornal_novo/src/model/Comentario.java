@@ -20,12 +20,12 @@ public class Comentario {
 	@Column(name="comentario_id")
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional= false)
+	@ManyToOne(fetch = FetchType.EAGER, optional= false)
 	@JoinColumn(name = "autor", referencedColumnName = "usuario_id")
 	private Usuario autor;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional= false)
-	@JoinColumn(name = "id", referencedColumnName = "noticia_id")
+	@ManyToOne(fetch = FetchType.EAGER, optional= false)
+	@JoinColumn(name = "id_noticia", referencedColumnName = "noticia_id")
 	private Noticia noticia;
 	
 	@Column(nullable = false , length = 100)
@@ -90,6 +90,36 @@ public String getTexto() {
 
 public void setTexto(String texto) {
 	this.texto = texto;
+}
+
+
+public int getId() {
+	return id;
+}
+
+
+public void setId(int id) {
+	this.id = id;
+}
+
+
+public Usuario getAutor() {
+	return autor;
+}
+
+
+public void setAutor(Usuario autor) {
+	this.autor = autor;
+}
+
+
+public Noticia getNoticia() {
+	return noticia;
+}
+
+
+public void setNoticia(Noticia noticia) {
+	this.noticia = noticia;
 }
 
 

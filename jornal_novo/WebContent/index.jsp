@@ -15,6 +15,11 @@
 <a href="formularioUsuario"> Cadastro Usuario </a> <br />
 <a href="listarUsuario"> Listar Usuario </a> <br />
 
+<h3>Secao</h3>
+
+<a href="formularioSecao"> Cadastro Secao </a> <br />
+<a href="listarSecao"> Listar Secao </a> <br />
+
 <h3>Noticia: </h3>
 <a href="formularioNoticia"> Cadastro Noticia </a> <br />
 <a href="listarNoticia"> Listar Noticia </a> <br />
@@ -27,9 +32,6 @@
 
 <a href="formularioComentario"> Cadastro Comentario </a> <br />
 <a href="listarComentario"> Listar Comentario </a> <br />
-<h3>Secao</h3>
 
-<a href="inserirSecao"> Cadastro Secao </a> <br />
-<a href="listarSecao"> Listar Secao </a> <br />
 </body>
 </html>

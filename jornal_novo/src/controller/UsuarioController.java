@@ -36,10 +36,11 @@ public class UsuarioController {
 	
 	@RequestMapping("inserirUsuario")
 	public String inserirUsuario(@Valid Usuario u, BindingResult r){
-		if (r.hasErrors())
+		Usuario uBD = uDAO.buscarUsuario(u);
+		if (r.hasErrors() || uBD != null)
 			return "formulario_usuario";
 		
-	
+		
 	u.addRole(new Role());
 		uDAO.adicinar(u);
 		System.out.println(u.toString() + "");
@@ -61,8 +62,6 @@ public class UsuarioController {
 		if (u.getSenha().equals(uBD.getSenha())){
 			session.setAttribute("usuario", uBD);
 			System.out.println("USUARIO SETADO!!");
-			session.setAttribute("role", rDAO.buscarID(uBD.getId()));
-			
 			return "usuario_adicionado";
 		}
 		return "formulario_login";
@@ -72,6 +71,9 @@ public class UsuarioController {
 	@RequestMapping("listarUsuario")
 	public String listarUsuario(Model m){
 		List<Usuario> list = uDAO.listar();
+		for (Usuario usuario : list) {
+			System.out.println(usuario.toString());
+		}
 		m.addAttribute("usuarios", list);
 		return "listar_usuario";
 	}
@@ -81,13 +83,16 @@ public class UsuarioController {
 		if (r.hasErrors())
 			return "formulario_usuario";
 		
+		
 		uDAO.alterar(u);
-		return "redirect:listar_usuario";
+		return "redirect:listarUsuario";
 	}
 	
 	@RequestMapping("removerUsuario")
 	public String removerUsuario(Usuario u){
+		System.out.println("To no remover");
+		System.out.println(u.toString());
 		uDAO.remover(u);
-		return "redirect:listar_usuario";
+		return "redirect:listarUsuario";
 	}
 }

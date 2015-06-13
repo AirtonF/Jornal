@@ -2,6 +2,7 @@ package model;
 
 import java.nio.MappedByteBuffer;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,7 +38,7 @@ public class Role {
 
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-	private List<Usuario> id_usuario;
+	private Set<Usuario> id_usuario;
 	
 	@Column(nullable = false , length = 20)
 	private String role;
@@ -48,7 +49,7 @@ public class Role {
 	}
 
 
-	public Role(List<Usuario> id_usuario, String role) {
+	public Role(Set<Usuario> id_usuario, String role) {
 		super();
 		this.id_usuario = id_usuario;
 		this.role = role;
@@ -61,12 +62,12 @@ public class Role {
 	}
 
 
-	public List<Usuario> getId_usuario() {
+	public Set<Usuario> getId_usuario() {
 		return id_usuario;
 	}
 
 
-	public void setId_usuario(List<Usuario> id_usuario) {
+	public void setId_usuario(Set<Usuario> id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 

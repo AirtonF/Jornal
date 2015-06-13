@@ -2,11 +2,15 @@ package dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import model.Comentario;
 
 @Repository
+@Transactional
+
 public class ComentarioDAO extends GenericDAO<Comentario>{
 
 	public List<Comentario> listar(){

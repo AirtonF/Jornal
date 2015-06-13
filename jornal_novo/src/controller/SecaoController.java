@@ -7,12 +7,16 @@ import javax.validation.Valid;
 import model.Secao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.SecaoDAO;
 
+@Controller
+@Transactional
 public class SecaoController {
 
 	@Autowired
@@ -29,8 +33,9 @@ public class SecaoController {
 		if(r.hasErrors())
 			return "formulario_secao";
 		
+		System.out.println(s.toString() +"CONTROLLER");
 		sDAO.adicinar(s);
-		return "secao_inserida";
+		return "usuario_adicionado";
 	}
 	
 	@RequestMapping("alrerarSecao")
@@ -39,13 +44,13 @@ public class SecaoController {
 			return "formulario_secao";
 
 		sDAO.alterar(s);
-		return "redirect:listar_secao";
+		return "redirect:listarSecao";
 	}
 
 	@RequestMapping("removerSecao")
 	public String removerSecao(Secao s){
 		sDAO.remover(s);
-		return "redirect:listar_secao";
+		return "redirect:listarSecao";
 	}
 	
 	@RequestMapping("listarSecao")

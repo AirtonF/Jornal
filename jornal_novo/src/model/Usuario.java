@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,11 +42,11 @@ public class Usuario {
 	private String email;
 	
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ROLE_USUARIO", 
-			joinColumns = {@JoinColumn(name = "usuario_id")}, 
+			joinColumns = {@JoinColumn(name = "usuario_id")},  
 			inverseJoinColumns= {@JoinColumn(name = "role_id")})
-	private List<Role> roles =  new ArrayList<Role>();
+	private Set<Role> roles =  new HashSet<Role>();
 	
 	
 	public Usuario() {
@@ -52,16 +54,22 @@ public class Usuario {
 	}
 
 
-	public Usuario(String login, String senha, String nome, String email) {
+public Usuario(int id, String login, String senha, String nome,
+			String email, Set<Role> roles) {
 		super();
+		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
 		this.email = email;
+		this.roles = roles;
 	}
 
 
-	
+
+
+
+
 	@Override
 	public String toString() {
 		return "usuario [login=" + login + ", senha=" + senha + ", nome="
@@ -131,9 +139,15 @@ public class Usuario {
 	public void RomoverRole(int id){
 		this.roles.remove(id);
 	}
-	
-	public Role GetRole(int id){
-		return this.roles.get(id);
+
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 	
 	

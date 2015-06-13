@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import model.Noticia;
+import model.Secao;
 import model.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,15 @@ public class NoticiaController {
 
 	@RequestMapping("inserirNoticia")
 	public String inserirNoticia(Noticia n, HttpSession session){
-		n.setAutor((Usuario)session.getAttribute("usuario"));
+	//	Usuario u = (Usuario)session.getAttribute("usuario");
+		
+		
+		// falta so pegar pegar usuario e secao do session 
+		Usuario u = new Usuario(1,"a","a","a","a", null);
+		Secao s = new Secao(1, "a", "a");
+		
+		n.setAutor(u);
+		n.setSecao(s);
 		n.setDataNoticia(new Date());
 		nDAO.adicinar(n);
 		System.out.println(n.toString());
